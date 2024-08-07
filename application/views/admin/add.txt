@@ -1,0 +1,775 @@
+<section id="add__client">
+  <div class="container-fluid p-4"> <!-- 1st div -->
+    <div class="row"> <!-- 2nd div -->
+      <div class="col-md-4 mx-auto"> <!-- 3rd div -->
+        <div class="card shadow"> <!-- 4th div -->
+            <div class="card-header"><p class="card-title">Validation Form</p></div>
+            <div class="">
+              <nav style="--bs-breadcrumb-divider:'/'; background-color:#EEF5FF" aria-label="breadcrumb">
+                  <small>
+                    <ol class="breadcrumb mx-2">
+                      <li class="breadcrumb-item"><a href="<?php echo base_url().$user_type.'/idcb_plan_table';?>"><em>Home</em></a></li>
+                      <li class="breadcrumb-item active" aria-current="page"><em>Add Client</em></li>
+                    </ol>
+                  </small>
+                </nav>
+              </div>
+          <div class="card-body"> <!-- 5th div -->
+            <form method="POST" action="" autocomplete="off">
+
+                <div class="row g-3">
+                  <div class="col-md-12">
+                    <label class="label">REFERECE CODE:</label> 
+                    <input type="text" class="form-control fw-bold" name="ref_code" value="<?php echo $this->session->brgy_id.'-'.$formatted_id; ?>" disabled>
+                  </div>
+
+                  <div class="col-md-12">
+                    <label class="label">OSCA ID No.<font style="color:red">*</font></label>
+                      <input type="text" name="osca_id" class="form-control"><?php echo set_value('osca_id');?>
+                  </div>
+
+                  <div class="col-md-12">
+                    <label class="label">NCSC RRN (if applicable)<font style="color:red">*</font></label>
+                      <input type="text" name="ncsc_rrn" class="form-control"><?php echo set_value('ncsc_rrn');?>
+                  </div>
+                </div>
+                <hr>
+
+                <details open>
+                  <summary>IDENTIFYING INFORMATION</summary>
+                  <br>
+
+                  <div class="row g-3">
+                    <div class="col-md-12">
+                      <label class="label">LAST NAME<font style="color:red">*</font></label>
+                      <input type="text" class="form-control" name="last_name" value="" required>
+                    </div>
+
+                    <div class="col-md-12">
+                      <label class="label">FIRST NAME<font style="color:red">*</font></label>
+                      <input type="text" class="form-control" name="first_name" value="" required>
+                    </div>
+                    
+                    <div class="col-md-12">
+                      <label class="label">MIDDLE NAME<font style="color:red">*</font></label>
+                      <input type="text" class="form-control" name="middle_name" value="" required>
+                    </div>
+
+                    <div class="col-md-12">
+                      <label class="label">EXT. NAME</label>
+                      <input type="text" class="form-control" name="ext_name" value="">
+                    </div>
+
+                    <div class="col-md-12">
+                      <label class="label">MOTHER'S MAIDEN NAME<font style="color:red">*</font></label>
+                      <input type="text" class="form-control"  name="mothers_maiden_name" value="" required>
+                    </div>
+
+                    <div class="card-option">
+                      <b>PERMANENT ADDRESS</b><br>
+                      <label for="perm_region" class="label">REGION<font style="color:red">*</font></label>
+                      <select name="perm_region" id="perm_region" class="form-control" placeholder="Region" required>
+                          <option value="" class="text-dark">Select Region</option>
+                          <?php
+                          $counter = 1;
+                          foreach($region as $row)
+                          {
+                              echo '<option value="'.$row->region_id.'" class="text-dark">'.$counter.' - '.$row->region_name.'</option>';
+                              $counter++;
+                          }
+                          ?>
+                      </select>
+                    </div>
+
+                    <div class="card-option">
+                        <label class="label">PROVINCE<font style="color:red">*</font></label>
+                        <select name="perm_prov" id="perm_province" class="form-control" required>
+                            <option value="">Select Region First</option>
+                        </select>
+                    </div>
+
+                    <div class="card-option">
+                        <label class="label">MUNICIPALITY/CITY<font style="color:red">*</font></label>
+                        <select name="perm_muni" id="perm_city" class="form-control" required>
+                            <option value="">Select Region First</option>
+                        </select>
+                    </div>
+
+                    <div class="card-option">
+                        <label class="label">BARANGAY<font style="color:red">*</font></label>
+                        <select name="perm_brgy" id="perm_brgy" class="form-control" required>
+                            <option value="">Select Region First</option>
+                        </select>
+                    </div>
+
+                    <div class="card-option">
+                        <label class="label">HOUSE NO./ PUROK<font style="color:red">*</font></label>
+                        <input type="text" name="perm_sitio" id="perm_sitio" class="form-control" required>
+                    </div>
+
+                    <div class="card-option">
+                        <label class="label">STREET<font style="color:red">*</font></label>
+                        <input type="text" name="perm_street" id="perm_street" class="form-control" required>
+                    </div>
+
+                    <div class="card-option">
+                        <input type="checkbox" id="copyAddress" onclick="copyPermanentAddress()">
+                        <label for="copyAddress">CHECK IF SAME ADDRESS ABOVE</label>
+                    </div>
+
+                    <div class="card-option">
+                        <b>PRESENT ADDRESS</b><br>
+                        <label for="present_region" class="label">REGION<font style="color:red">*</font></label>
+                        <select name="pre_region" id="present_region" class="form-control" placeholder="Region" required>
+                            <option value="" class="text-dark">Select Region</option>
+                            <?php
+                            $counter = 1;
+                            foreach($region as $row)
+                            {
+                                echo '<option value="'.$row->region_id.'" class="text-dark">'.$counter.' - '.$row->region_name.'</option>';
+                                $counter++;
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="card-option">
+                        <label class="label">PROVINCE<font style="color:red">*</font></label>
+                        <select name="pre_prov" id="present_province" class="form-control" required>
+                            <option value="">Select Region First</option>
+                        </select>
+                    </div>
+
+                    <div class="card-option">
+                        <label class="label">MUNICIPALITY/CITY<font style="color:red">*</font></label>
+                        <select name="pre_muni" id="present_city" class="form-control" required>
+                            <option value="">Select Region First</option>
+                        </select>
+                    </div>
+
+                    <div class="card-option">
+                        <label class="label">BARANGAY<font style="color:red">*</font></label>
+                        <select name="pre_brgy" id="present_brgy" class="form-control" required>
+                            <option value="">Select Region First</option>
+                        </select>
+                    </div>
+
+                    <div class="card-option">
+                        <label class="label">HOUSE NO./ PUROK<font style="color:red">*</font></label>
+                        <input type="text" name="pre_sitio" id="pre_sitio" class="form-control" required>
+                    </div>
+
+                    <div class="card-option">
+                        <label class="label">STREET<font style="color:red">*</font></label>
+                        <input type="text" name="pre_street" id="pre_street" class="form-control" required>
+                    </div>
+
+                      <script>
+                          function copyPermanentAddress() {
+                              if (document.getElementById('copyAddress').checked) {
+                                  document.getElementById('present_region').value = document.getElementById('perm_region').value;
+                                  document.getElementById('present_province').value = document.getElementById('perm_province').value;
+                                  document.getElementById('present_city').value = document.getElementById('perm_city').value;
+                                  document.getElementById('present_brgy').value = document.getElementById('perm_brgy').value;
+                              } else {
+                                  document.getElementById('present_region').value = "";
+                                  document.getElementById('present_province').value = "";
+                                  document.getElementById('present_city').value = "";
+                                  document.getElementById('present_brgy').value = "";
+                              }
+                          }
+                      </script>
+
+                      <script type='text/javascript'>
+                        function submitBday() {
+                          Q4A = "";
+                          var Bdate = document.getElementById('bday').value;
+                          var Bday = +new Date(Bdate);
+                          var age = ~~((Date.now() - Bday) / (31557600000));
+                          Q4A += "" + age;
+                          var theBday = document.getElementById('resultBday');
+                          theBday.innerHTML = Q4A;
+
+                          if (age < 60) {
+                            theBday.value = "";
+                            alert("Age is below 60");
+                          } else {
+                            theBday.value = age;
+                          }
+                        }
+                      </script>
+
+                    <div class="col-md-8">
+                      <label class="label">BIRTHDATE<font style="color:red">*</font></label>
+                        <input type="date" name="birthdate" id="bday" value="<?php echo set_value('birthdate');?>" class="form-control" onchange="submitBday()" >
+                    </div>
+
+                    <div class="col-md-4" id="age_output">
+                      <label class="label">AGE <i class="fas fa-lock" id="lock" aria-hidden="true"></i></label>
+                        <textarea name="age" rows="1" value="<?php echo set_value('age');?>" class="form-control" id="resultBday" required readonly></textarea>
+                    </div>	
+
+                    <div class="col-md-12">
+                      <label class="label">GENDER<font style="color:red">*</font></label>
+                      <select name="gender" class="form-control" required>
+                          <option value="">Please Select</option>
+                          <option value="1" <?php echo set_select('gender', '1'); ?>>1 - MALE</option>
+                          <option value="2" <?php echo set_select('gender', '2'); ?>>2 - FEMALE</option>
+                      </select>
+                    </div>	
+
+                    <div class="col-md-12">
+                      <label class="label">CIVIL STATUS<font style="color:red">*</font></label>
+                      <select name="civil_status" class="form-control" required>
+                          <option value="">Please Select</option>
+                          <option value="1"<?php echo set_select('civil_status', '1'); ?>>1 - SINGLE</option>
+                          <option value="2"<?php echo set_select('civil_status', '2'); ?>>2 - MARRIED</option>
+                          <option value="3"<?php echo set_select('civil_status', '3'); ?>>3 - WIDOWED</option>
+                          <option value="4"<?php echo set_select('civil_status', '4'); ?>>4 - DIVORCED</option>
+                          <option value="5"<?php echo set_select('civil_status', '5'); ?>>5 - SEPARATED</option>
+                          <option value="6"<?php echo set_select('civil_status', '6'); ?>>6 - COMMON-LAW SPOUSE</option>
+                          <option value="7"<?php echo set_select('civil_status', '7'); ?>>7 - N/D</option>
+                      </select>
+                    </div>
+                    
+                    <div class="col-md-12">
+                      <label class="label">PLACE OF BIRTH<font style="color:red">*</font></label>
+                      <input type="text" class="form-control" name="birth_place" value="" required>
+                    </div><hr>
+
+                    <div class="col-md-12">
+                    <b>AFFILATION</b><br><br>
+                      <label class="label">LISTAHANAN</label>
+                      <select name="listahanan_y_n" class="form-control" id="listahanan_y_n">
+                          <option value="">Please Select</option>
+                          <option value="1" <?php echo set_select('listahanan_y_n', '1'); ?>>1 - YES</option>
+                          <option value="2" <?php echo set_select('listahanan_y_n', '2'); ?>>2 - NO</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-12" id="hh_id_no">
+                      <label class="label">HOUSEHOLD ID NO.</label>
+                      <input type="text" class="form-control" name="household_id_no" id="hh_id_no_input" value="">
+                    </div>
+
+                    <script>
+                      $(document).ready(function() {
+                        $("#listahanan_y_n").change(function() {
+                          const value = $(this).val();
+                          $('#hh_id_no').toggle(value == "1");
+                          $('#hh_id_no_input').prop('disabled', value != "1");
+                        }).trigger('change');
+                      });
+                    </script>
+
+                    <div class="col-md-12">
+                      <label class="label">IPs?</label>
+                      <select name="ip_y_n" class="form-control" >
+                          <option value="">Please Select</option>
+                          <option value="1" <?php echo set_select('ip_y_n', '1'); ?>>1 - YES</option>
+                          <option value="2" <?php echo set_select('ip_y_n', '2'); ?>>2 - NO</option>
+                      </select>
+                    </div>
+ 
+                    <div class="col-md-12">
+                      <label class="label">ETHNICITY</label>
+                      <input type="text" class="form-control" name="ethnicity" value="">
+                    </div>
+
+                    <div class="col-md-12">
+                      <label class="label">4Ps MEMBER?</label>
+                      <select name="pantawid_y_n" class="form-control" >
+                          <option value="">Please Select</option>
+                          <option value="1" <?php echo set_select('pantawid_y_n', '1'); ?>>1 - YES</option>
+                          <option value="2" <?php echo set_select('pantawid_y_n', '2'); ?>>2 - NO</option>
+                      </select>
+                    </div>
+
+                  </div>
+                </details><br><hr>
+
+                <details open>
+                  <summary>II. FAMILY INFORMATION</summary><br>
+                  <div class="row g-3">
+                    <b>NAME OF SPOUSE</b><br>
+                    <div class="col-md-12">
+                      <label class="label">LAST NAME<font style="color:red">*</font></label>
+                      <input type="text" class="form-control" name="" value="spouse_lname" required>
+                    </div>
+
+                    <div class="col-md-12">
+                      <label class="label">FIRST NAME<font style="color:red">*</font></label>
+                      <input type="text" class="form-control" name="spouse_fname" value="" required>
+                    </div>
+                    
+                    <div class="col-md-12">
+                      <label class="label">MIDDLEN MAME<font style="color:red">*</font></label>
+                      <input type="text" class="form-control" name="" value="spouse_mname" required>
+                    </div>
+
+                    <div class="col-md-12">
+                      <label class="label">EXT. NAME</label>
+                      <input type="text" class="form-control" name="spouse_ename" value="" required>
+                    </div>
+
+                    <div class="col-md-12">
+                      <label class="label">CONTACT NUMBER</label>
+                      <input type="number" class="form-control" name="spouse_contact_num" value="" required>
+                    </div>
+
+                    <div class="card-option">
+                        <b>ADDRESS</b><br>
+                        <label for="present_region" class="label">REGION<font style="color:red">*</font></label>
+                        <select name="spouse_region" id="present_region" class="form-control" placeholder="Region" required>
+                            <option value="" class="text-dark">Select Region</option>
+                            <?php
+                            $counter = 1;
+                            foreach($region as $row)
+                            {
+                                echo '<option value="'.$row->region_id.'" class="text-dark">'.$counter.' - '.$row->region_name.'</option>';
+                                $counter++;
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="card-option">
+                        <label class="label">PROVINCE<font style="color:red">*</font></label>
+                        <select name="spouse_prov" id="present_province" class="form-control" required>
+                            <option value="">Select Region First</option>
+                        </select>
+                    </div>
+
+                    <div class="card-option">
+                        <label class="label">MUNICIPALITY/CITY<font style="color:red">*</font></label>
+                        <select name="spouse_muni" id="present_city" class="form-control" required>
+                            <option value="">Select Region First</option>
+                        </select>
+                    </div>
+
+                    <div class="card-option">
+                        <label class="label">BARANGAY<font style="color:red">*</font></label>
+                        <select name="spouse_brgy" id="present_brgy" class="form-control" required>
+                            <option value="">Select Region First</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label class="label">HOUSE NO./ PUROK<font style="color:red">*</font></label>
+                        <input type="text" name="spouse_sitio" id="pre_sitio" class="form-control" required>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label class="label">STREET<font style="color:red">*</font></label>
+                        <input type="text" name="spouse_street" id="pre_street" class="form-control" required>
+                    </div>
+
+                    <div class="col-md-12">
+                    LIVING ARRANGEMENT
+                      <label class="label">HOUSE</label>
+                      <select name="house" class="form-control" required>
+                          <option value="">Please Select</option>
+                          <option value="1" <?php echo set_select('house', '1'); ?>>1 - OWN</option>
+                          <option value="2" <?php echo set_select('house', '2'); ?>>2 - RENT</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-12">
+                      <label class="label">LIVING WITH?</label>
+                      <select name="living_with" class="form-control" required>
+                          <option value="">Please Select</option>
+                          <option value="1" <?php echo set_select('living_with', '1'); ?>>1 - LIVING ALONE</option>
+                          <option value="2" <?php echo set_select('living_with', '2'); ?>>2 - LIVING WITH SPOUSE ONLY</option>
+                          <option value="3" <?php echo set_select('living_with', '3'); ?>>3 - LIVING WITH A CHILD</option>
+                          <option value="4" <?php echo set_select('living_with', '4'); ?>>4 - LIVING WITH ANOTHER RELATIVE</option>
+                          <option value="5" <?php echo set_select('living_with', '5'); ?>>5 - LIVING WITH UNRELATED PEOPLE ONLY</option>
+                          <option value="6" <?php echo set_select('living_with', '6'); ?>>7 - Others</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label class="label">PLEASE SPECIFY<font style="color:red">*</font></label>
+                        <input type="text" name="other_living_with" id="other_living_with" class="form-control" required>
+                    </div>
+                  </div><hr>
+
+                  <div class="row g-3">
+                    <div class="col-md-12">
+                          <button type="button" class="btn btn-primary perp" id="add"><i class="fa-solid fa-plus fa-sm fa-fw mr-2"></i> ADD REPRESENTATIVE</button>
+                    </div>
+
+                    <?php for ($i=0; $i <1 ; $i++) { ?>
+
+                      <script type="text/javascript">
+                        $(document).ready(function(){      
+                          var i=1;  
+
+                          $('#add').click(function(){  
+                        i++;             
+                        $('#dynamic_field').append('<div id="row'+i+'"><hr><div class="col-md-12"><label class="label">Name (Last, First Middle)<font style="color:red">*</font></label><input type="text" name="representative_name[]" id="" class="form-control"></div><div class="col-md-12"><label class="label">Living with?</label><select name="representative_relationship[]" class="form-control" ><option value="">Please Select</option><option value="1" >1 - Spouse</option><option value="2" >2 - Siblings</option><option value="3" >3 - Child</option><option value="4" >4 - Grand-child</option><option value="5" >5 - Greate Grand-child</option><option value="6" >6 - Grand-parent</option><option value="7" >7 - Greate Grand-parent</option><option value="8" >8 - Niece</option><option value="9" >9 - Nephew</option><option value="10" >10 - Neighbor</option><option value="11" >11 - Concerned Citizen</option><option value="12" >12 - In-laws</option><option value="13" >13 - Common-laws Spouse</option><option value="14" >14 - Fiance</option><option value="15" >15 - Far-Flung Relatives</option><option value="16" >16 - God-Father</option><option value="17" >17 - God-Mother</option><option value="18" >18 - God-Child</option><option value="19" >19 - Guardian/Care giver</option></select></div><div class="col-md-12"><label class="label">Contact Number</label><font style="color:red">*</font></label><input type="number" name="representative_contact_num[]" id="" class="form-control"></div><br><button type="button" onclick="return confirm(\'Are you sure you want to delete?\')" name="remove" id="'+i+'" class="btn btn-danger btn_remove btn-align">Delete</button></div></div></div>');
+                          });
+                            $(document).on('click', '.btn_remove', function(){  
+                                  var button_id = $(this).attr("id"); 
+                                  $('#row'+button_id+'').remove();  
+                                  $('#'+button_id+'').remove();  
+                                  
+                              });  
+                          
+                            });  
+                      </script>
+                    <?php } ?>
+                    <div id="dynamic_field">
+
+                    <div class="row g-3">
+                      <div class="col-md-12">
+                      <b>NAME OF AUTHORIZED REPRESENTATIVE</b><br><br>
+                          <label class="label">NAME (LAST, FIRST MIDDLE)<font style="color:red">*</font></label>
+                        <input type="text" class="form-control"  name="representative_name[]" value="">
+                      </div>
+
+                      <div class="col-md-12">
+                        <label class="label">RELATIONSHIP TO THE CLIENT</label>
+                        <select name="representative_relationship[]" class="form-control" >
+                            <option value="">Please Select</option>
+                            <option value="1" >1 - SPOUSE</option>
+                            <option value="2" >2 - SIBLINGS</option>
+                            <option value="3" >3 - CHILD</option>
+                            <option value="4" >4 - GRAND-CHILD</option>
+                            <option value="5" >5 - GREATE GRAND-CHILD</option>
+                            <option value="6" >6 - GRAND-PARENT</option>
+                            <option value="7" >7 - GREATE GRAND-PARENT</option>
+                            <option value="8" >8 - NIECE</option>
+                            <option value="9" >9 - NEPHEW</option>
+                            <option value="10" >10 - NEIGHBOR</option>
+                            <option value="11" >11 - CONCERNED CITIZEN</option>
+                            <option value="12" >12 - IN-LAWS</option>
+                            <option value="13" >13 - COMMON-LAW SPOUSE</option>
+                            <option value="14" >14 - FIANCE</option>
+                            <option value="15" >15 - FAR-FLUNG RELATIVES</option>
+                            <option value="16" >16 - GOD-FATHER</option>
+                            <option value="17" >17 - GOD-MOTHER</option>
+                            <option value="18" >18 - GOD-CHILD</option>
+                            <option value="19" >19 - GUARDIAN/CAREGIVER</option>
+                        </select>
+                      </div>
+                      
+                      <div class="col-md-12">
+                          <label class="label">CONTACT NUMBER <font style="color:red">*</font></label>
+                          <input type="number" class="form-control" name="representative_contact_num[]">
+                      </div>
+                    </div>
+                    
+                  </div>
+                </details><br><hr>
+
+                <details open>
+                  <summary>III. ECONOMIC INFORMATION</summary><br>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="label">RECIEVING A PENSION?<font style="color:red">*</font></label>
+                      <select name="pension_y_n" class="form-control" required>
+                          <option value="">Please Select</option>
+                          <option value="1" <?php echo set_select('pension_y_n', '1'); ?>>1 - YES</option>
+                          <option value="2" <?php echo set_select('pension_y_n', '2'); ?>>2 - NO</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="label">PLEASE SPECIFY<font style="color:red">*</font></label>
+                        <input type="text" class="form-control" name="pension_source" required>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="label">HAVE PERMANENT INCOME?<font style="color:red">*</font></label>
+                      <select name="perm_income_y_n" class="form-control" required>
+                          <option value="">Please Select</option>
+                          <option value="1" <?php echo set_select('perm_income_y_n', '1'); ?>>1 - YES</option>
+                          <option value="2" <?php echo set_select('perm_income_y_n', '2'); ?>>2 - NO</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="label">AMOUNT<font style="color:red">*</font></label>
+                        <input type="number" class="form-control" name="perm_income_amount" required>
+                    </div>
+
+                    <div class="col-md-6"> 
+                      <label class="label">RECIEVING REGULAR SUPPORT?<font style="color:red">*</font></label>
+                      <select name="regular_support" class="form-control" required>
+                          <option value="">Please Select</option>
+                          <option value="1" <?php echo set_select('regular_support', '1'); ?>>1 - YES</option>
+                          <option value="2" <?php echo set_select('regular_support', '2'); ?>>2 - NO</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="label">AMOUNT<font style="color:red">*</font></label>
+                        <input type="number" class="form-control" name="regular_support_amount" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="label">TOTAL OF PERMANENT AND REGULAR INCOME<font style="color:red">*</font></label>
+                        <input type="number" class="form-control" name="total_income_support" required>
+                    </div>
+
+                  </div>
+                </details><br><hr>
+
+                <details open>
+                  <summary>IV. HEALTH INFORMATION</summary><br>
+                  <div class="row g-3">
+                    <div class="col-md-5">
+                      <label class="label">WITH EXISTING ILLNESS<font style="color:red">*</font></label>
+                      <select name="illness" class="form-control">
+                          <option value="">Please Select</option>
+                          <option value="1" <?php echo set_select('illness', '1'); ?>>1 - YES</option>
+                          <option value="2" <?php echo set_select('illness', '2'); ?>>2 - NONE</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-7">
+                        <label class="label">PLEASE SPECIFY<font style="color:red">*</font></label>
+                        <input type="text" class="form-control" name="illness_specify">
+                    </div>
+
+                    <div class="col-md-5">
+                      <label class="label">WITH DISABILITY?<font style="color:red">*</font></label>
+                      <select name="disability_y_n" class="form-control">
+                          <option value="">Please Select</option>
+                          <option value="1" <?php echo set_select('disability_y_n', '1'); ?>>1 - YES</option>
+                          <option value="2" <?php echo set_select('disability_y_n', '2'); ?>>2 - NONE</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-7">
+                        <label class="label">Please Select Disability<font style="color:red">*</font></label>
+                        <select name="disability" class="form-control">
+                          <option value="">Please Select</option>
+ 
+                      </select>
+                    </div>
+
+                    <div class="col-md-12">
+                      FAILTY QUESTIONS
+                      <label class="label">DO YOU EXPERIENCE DIFFICULTY IN DOING YOUR ADLS?</label>
+                      <select name="adl_difficulty_y_n" class="form-control">
+                          <option value="">Please Select</option>
+                          <option value="1" <?php echo set_select('adl_difficulty_y_n', '1'); ?>>1 - YES</option>
+                          <option value="2" <?php echo set_select('adl_difficulty_y_n', '2'); ?>>2 - NO</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-12">
+                      <label class="label">ARE YOU COMPLETELTY DEPENDENT ON SOMEONE IN DOING YOUR IADLS?</label>
+                      <select name="adl_do_someone_y_n" class="form-control">
+                          <option value="">Please Select</option>
+                          <option value="1" <?php echo set_select('adl_do_someone_y_n', '1'); ?>>1 - YES</option>
+                          <option value="2" <?php echo set_select('adl_do_someone_y_n', '2'); ?>>2 - NO</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-12">
+                      <label class="label">ARE YOU EXPERIENCING WEIGHT LOSS, WEAKNESS, EXHAUSTION?</label>
+                      <select name="exhaustion_exp_y_n" class="form-control">
+                          <option value="">Please Select</option>
+                          <option value="1" <?php echo set_select('exhaustion_exp_y_n', '1'); ?>>1 - YES</option>
+                          <option value="2" <?php echo set_select('exhaustion_exp_y_n', '2'); ?>>2 - NO</option>
+                      </select>
+                    </div>
+                  </div>
+                </details><br><hr>
+
+                <details open>
+                  <summary>V. ASSESSMENT AND VI. RECOMMENDATION</summary><br>
+                  <div class="row g-3">
+                    <div class="col-md-12">
+                      <label class="label">ASSESSMENT</label>
+                      <textarea class="form-control" name="assessment" value=""></textarea>
+                    </div>
+
+                    <div class="col-md-12">
+                      <label class="label">RECOMMENDATION</label>
+                      <textarea class="form-control" name="recommendation" value=""></textarea>
+                    </div>
+                  </div>
+                </details><br><hr>
+
+                  <div class="row g-3">
+                    <div class="col-md-8">
+                      <label class="label">NAME OF VALIDATOR</label>
+                      <input type="text" class="form-control" name="validator_name" value="" required>
+                    </div>
+
+                    <div class="col-md-4">
+                      <label class="label">DATE VALIDATED</label>
+                      <input type="date" class="form-control" name="date_validate" value="" required>
+                    </div>
+           
+                    <div class="col-md-8">
+                      <label class="label">NAME OF ENCODER</label>
+                      <input type="text" class="form-control" name="encoder_name" value="" required>
+                    </div>
+
+                    <div class="col-md-4">
+                      <label class="label">DATE ACCOMPLISHED</label>
+                      <input type="date" class="form-control" name="date_encoded" value="" required>
+                    </div>
+
+                    <div class="col-md-8">
+                      <label class="label">NAME OF APPLICANT OR RESPONDENT</label>
+                      <input type="text" class="form-control" name="respondent_name" value="" required>
+                    </div>
+
+                    <div class="col-md-4">
+                      <label class="label">DATE CONFIRMED</label>
+                      <input type="date" class="form-control" name="date_confirmed" value="" required>
+                    </div>
+                  </div><br>
+
+              <div class="card-footer text-end">
+                  <input type="hidden" name="<?=$csrf['name'];?>" value="<?=$csrf['hash'];?>" />
+                  <input type="submit" name="idcbPlanSubmit" class="btn btn-primary" id="btn_add" value="Submit" onclick="return confirm('Are you sure you want to add?')">
+              </div>
+
+            </form>
+          </div> <!-- end 5th div -->
+        </div> <!-- end 4th div -->
+      </div> <!-- end 3rd div -->
+    </div> <!-- end 2nd div -->
+  </div> <!-- end 1st div -->
+</section>
+
+
+
+<!-- DYNAMIC ADDRESS -->
+<script>
+$(document).ready(function() {
+    function updatePresentAddressFields() {
+        if ($('#copyAddress').is(':checked')) {
+            $('#present_region').val($('#perm_region').val()).trigger('change');
+        }
+    }
+
+    $('#perm_region').change(function() {
+        const region_id = $('#perm_region').val();
+        if (region_id != '') {
+            $.ajax({
+                url: "<?php echo base_url(); ?>Admin/fetch_province",
+                method: "POST",
+                data: { region_id: region_id },
+                success: function(data) {
+                    $('#perm_province').html(data);
+                    $('#perm_city').html('<option value="">Select Province First</option>');
+                    $('#perm_brgy').html('<option value="">Select Province First</option>');
+                    updatePresentAddressFields();
+                }
+            });
+        } else {
+            $('#perm_province').html('<option value="">Select Province</option>');
+            $('#perm_city').html('<option value="">Select Municipality</option>');
+            $('#perm_brgy').html('<option value="">Select Barangay</option>');
+        }
+    });
+
+    $('#perm_province').change(function() {
+        const province_id = $('#perm_province').val();
+        if (province_id != '') {
+            $.ajax({
+                url: "<?php echo base_url(); ?>Admin/fetch_city",
+                method: "POST",
+                data: { province_id: province_id },
+                success: function(data) {
+                    $('#perm_city').html(data);
+                    $('#perm_brgy').html('<option value="">Select Municipality First</option>');
+                    updatePresentAddressFields();
+                }
+            });
+        } else {
+            $('#perm_city').html('<option value="">Select City</option>');
+            $('#perm_brgy').html('<option value="">Select Barangay</option>');
+        }
+    });
+
+    $('#perm_city').change(function() {
+        const city_id = $('#perm_city').val();
+        if (city_id != '') {
+            $.ajax({
+                url: "<?php echo base_url(); ?>Admin/fetch_brgy",
+                method: "POST",
+                data: { city_id: city_id },
+                success: function(data) {
+                    $('#perm_brgy').html(data);
+                    updatePresentAddressFields();
+                }
+            });
+        } else {
+            $('#perm_brgy').html('<option value="">Select Barangay</option>');
+        }
+    });
+
+    $('#present_region').change(function() {
+        const region_id = $('#present_region').val();
+        if (region_id != '') {
+            $.ajax({
+                url: "<?php echo base_url(); ?>Admin/fetch_province",
+                method: "POST",
+                data: { region_id: region_id },
+                success: function(data) {
+                    $('#present_province').html(data);
+                    $('#present_city').html('<option value="">Select Province First</option>');
+                    $('#present_brgy').html('<option value="">Select Province First</option>');
+                }
+            });
+        } else {
+            $('#present_province').html('<option value="">Select Province</option>');
+            $('#present_city').html('<option value="">Select Municipality</option>');
+            $('#present_brgy').html('<option value="">Select Barangay</option>');
+        }
+    });
+
+    $('#present_province').change(function() {
+        const province_id = $('#present_province').val();
+        if (province_id != '') {
+            $.ajax({
+                url: "<?php echo base_url(); ?>Admin/fetch_city",
+                method: "POST",
+                data: { province_id: province_id },
+                success: function(data) {
+                    $('#present_city').html(data);
+                    $('#present_brgy').html('<option value="">Select Municipality First</option>');
+                }
+            });
+        } else {
+            $('#present_city').html('<option value="">Select City</option>');
+            $('#present_brgy').html('<option value="">Select Barangay</option>');
+        }
+    });
+
+    $('#present_city').change(function() {
+        const city_id = $('#present_city').val();
+        if (city_id != '') {
+            $.ajax({
+                url: "<?php echo base_url(); ?>Admin/fetch_brgy",
+                method: "POST",
+                data: { city_id: city_id },
+                success: function(data) {
+                    $('#present_brgy').html(data);
+                }
+            });
+        } else {
+            $('#present_brgy').html('<option value="">Select Barangay</option>');
+        }
+    });
+
+    $('#copyAddress').click(function() {
+        if ($(this).is(':checked')) {
+            $('#present_region').val($('#perm_region').val()).trigger('change');
+        } else {
+            $('#present_region').val('').trigger('change');
+            $('#present_province').html('<option value="">Select Province</option>');
+            $('#present_city').html('<option value="">Select Municipality</option>');
+            $('#present_brgy').html('<option value="">Select Barangay</option>');
+        }
+    });
+});
+</script>

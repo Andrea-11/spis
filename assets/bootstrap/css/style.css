@@ -1,0 +1,356 @@
+*{
+	margin:0;
+	padding:0;
+}
+
+body {
+	font-family:'Monaco','Verdana';
+	background-color: #f0f8ff;
+}
+
+@media only screen and (max-width: 620px) {
+  /* For mobile phones: */
+  .menu, .main, .right {
+    width: 100%;
+  }
+}
+
+@media print {  
+	body {
+		-webkit-print-color-adjust: exact;
+	} 
+}
+
+@media print {  
+	.hide-print {   
+		display:none !important;  
+	}   
+}
+
+div.error{
+  font-size: 12px;
+	color:rgb(255, 0, 0);
+}
+
+.ms-10{
+	margin-left: 100px;
+	font-weight: bold;
+}
+
+/* LOGIN */
+#login .card{
+	border-radius:10px;
+	width:100%;
+	margin:auto;
+	max-width:400px;
+	min-height:500px;
+	position:relative;
+	background-color: rgba(230, 230, 230, 0.2) !important;
+}
+
+#login .card-header{
+	border-radius:10px 10px 0 0 ;
+	color: #ffffff;
+	background-color: #7BD3EA;
+	font-size:22px;
+
+}
+
+
+#login .field{
+	position:relative;
+	margin-top: 20px;
+}
+
+#login .field input{
+	color:#565656;
+	background: #ffffff;
+	padding: 0.625rem;
+	border: 2px solid #7BD3EA;
+	border-radius: 1%;
+}
+
+#login .field label{
+	position: absolute;
+	top: 0;
+	left: 0;
+	translate: 0.625rem 0.625rem;
+	color: #607274;
+	background-color: #ffffff;
+	padding-inline: 0.25rem;
+	border: 2px solid transparent;
+	pointer-events: none;
+	transition: translate 250ms, background-color 250ms, border-color 250ms;
+}
+
+#login .field:focus-within label,
+#login .field:not(:has(:placeholder-shown))
+label{
+	translate: 0.625rem -1rem;
+	border-color: #7BD3EA;
+}
+#login .field ::placeholder{
+	color: transparent;
+}
+
+#login body{
+	background-size: cover;
+	font-size: 12px;
+  }
+  
+#login .text-end a{
+	text-decoration: none;
+}
+
+#login .submit{
+	background-color:#7BD3EA;
+	border-color: #7BD3EA;
+	color: #ffffff;
+	text-align: center;
+	font-weight: bold;
+	border-radius: 5px;
+	padding-bottom: 10px;
+}
+
+#login .submit:hover { 
+	color: #000000;
+	border-color: #0000009a;
+}
+
+/* EYE ICON */	
+#login .icon-div {
+    position: relative;
+}
+
+#login .span-eye {
+	color: #0091b6;
+    position: absolute;
+    right: 10px;
+    top: 15px;
+
+}
+
+/* SIGN UP LABEL */
+#login .sign-up {
+	color: #0091b6;
+	text-decoration: none;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#login .card-footer{
+	border-radius:0 0 10px 10px;
+}
+
+#register header {
+	color: #ffffff;
+	background-color: #7BD3EA;
+}
+
+#register{
+	padding: 100px;
+}
+
+#register .card{
+	border-radius:20px;
+	width:100%;
+	margin:auto;
+	max-width:400px;
+	min-height:500px;
+	position:relative;
+	background-color: rgba(255,255,255, 0.2) !important;
+	font-size:22px;
+}
+
+#register .card-field{
+	position:relative;
+	margin-top: 20px;
+}
+
+#register .card-field input option{
+	color:#565656;
+	background: #ffffff;
+	padding: 0.625rem;
+	border: 2px solid #7BD3EA;
+	border-radius: 1%;
+}
+
+#register .card-field label{
+	position: absolute;
+	top: 0;
+	left: 0;
+	translate: 0.625rem 0.625rem;
+	color: #607274;
+	background-color: #ffffff;
+	padding-inline: 0.25rem;
+	border: 2px solid transparent;
+	pointer-events: none;
+	transition: translate 250ms, background-color 250ms, border-color 250ms;
+}
+
+#register .card-field:focus-within label,
+#register .card-field:not(:has(:placeholder-shown))
+label{
+	translate: 0.625rem -1rem;
+	border-color: #0091b6;
+}
+#register .card-field ::placeholder{
+	color: transparent;
+}
+
+#register .pass {
+	padding-top: 10px;
+}
+  
+#register .input{
+	padding:8px 10px;
+	border-radius:10px;
+}
+#register .label{
+	font-size:15px;
+}
+
+#register p{
+	font-size:15px;
+}
+
+#register .span-eye {
+	color: #0091b6;
+	position: absolute;
+	right: 12px;
+	top: 10px;
+}
+
+#register .submit{
+	background-color: #7BD3EA;
+	color: #ffffff;
+	text-align: center;
+	font-weight: bold;
+	border-radius: 5px;
+	margin-bottom: 20px;
+	max-width: 340px;
+	margin: 20px 0 20px 0;
+}
+
+#register .submit:hover { 
+	color: #000000;
+	border: 1px solid black;
+}
+
+#register .sign-up { 
+	color: hsla(186, 66%, 40%, 1);
+	text-decoration: none;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+#register .sign-up:hover { 
+	color:#0063f7 ;
+}
+
+#register .card-footer{
+	font-size: 16px;
+	padding: 30px;
+}
+
+#register .card-footer a{
+	text-decoration: none;
+}
+
+
+
+
+/* Navigation */
+/* #navigation .navbar{
+	background-color: #565656;
+	margin-bottom: 1000px;
+}
+
+.navbar-nav .nav-item.active .nav-link {
+	background-color: #9b1c2dd5;
+	color: #fff; 
+	border-radius: 5px;
+}
+
+#navigation .navbar-brand.abs{
+	position: absolute;
+	width: auto;
+	height: auto;
+	left: 50%;
+	transform: translateX(-50%);
+	text-align: center;
+}
+
+#navigation .dropdown-submenu:hover .dropdown-menu {
+	display: block;
+	margin-top: -40px;
+	margin-left: 100%;
+	min-width: 200px;
+	position: absolute;
+	z-index: 100;
+}
+
+#navigation .dropdown-submenu {
+	position: relative;
+}
+
+#navigation h5.home:hover{
+	color: #ffffff;
+}
+
+#navigation .badge{
+	position:absolute;
+	top: -5px;
+	right: -10px;
+	padding: 5px 10px;
+	border-radius: 10px;
+	background-color: #ff0000;
+	color: #ffffff;
+	} */
+
+
+/* DASHBOARD HEADER */
+/* #dashboard .card-header{
+	background: hsla(217, 100%, 50%, 1);
+	background: linear-gradient(135deg, rgb(0, 132, 255) 0%, hsla(186, 100%, 69%, 1) 100%);
+	color: #ffffff;
+} */
+
+/* ADD CLIENT */
+/* #add__client{
+	font-family: "Lato", Arial, sans-serif;
+	font-size: 15px;
+	background-color: #f0f8ff;
+}
+
+#add__client .card-header{
+	background: hsla(186, 66%, 40%, 1);
+	background: linear-gradient(90deg, rgb(35, 156, 169) 0%, hsla(188, 78%, 69%, 1) 100%);
+	position: relative;
+	text-decoration: none;
+	font-size: 20px;
+	border-radius: 2px;
+	color: #ffffff;
+}
+
+#add__client .breadcrumb-item a{
+	text-decoration: none;
+}
+
+#add__client .card-option{
+	margin-bottom: 5px;
+	
+}
+#add__client summary{
+	font-weight: bold;
+	font-size: 20px;
+}*/
+
+#resultBday{
+	resize: none;
+} 
+
+#lock{
+	color: #ff0000;
+}
+
